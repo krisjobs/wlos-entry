@@ -10,6 +10,7 @@ import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { metaReducers, reducers, routerFeatureKey } from './reducers';
 import { EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entities/auth.metadata';
+import { CoreService } from '../core.service';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { entityConfig } from './entities/auth.metadata';
         strictStateSerializability: true,
       }
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([CoreService]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     StoreRouterConnectingModule.forRoot({
       stateKey: routerFeatureKey,

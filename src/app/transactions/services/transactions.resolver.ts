@@ -11,7 +11,6 @@ export class TransactionsResolver implements Resolve<boolean> {
 
     constructor(
         private transactionsService: TransactionEntityService,
-        private coreService: CoreService,
     ) {
     }
 
@@ -20,7 +19,6 @@ export class TransactionsResolver implements Resolve<boolean> {
         return this.transactionsService.loaded$.pipe(
             tap(loaded => {
                 if (!loaded) {
-                    this.coreService.registerLoadingObservable(this.transactionsService.loading$)
                     this.transactionsService.getAll();
                 }
             }),

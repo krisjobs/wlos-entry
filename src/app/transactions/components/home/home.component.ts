@@ -13,8 +13,6 @@ import { AppState } from 'src/app/core/store/reducers';
 })
 export class HomeComponent implements OnInit {
 
-  public loading$ = this.coreService.loading$;
-
   public transactions$ = this.transactionsService.entities$;
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
