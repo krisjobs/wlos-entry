@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
+import { Router } from '@angular/router';
 import { from, Observable } from "rxjs";
+import { first, map } from 'rxjs/operators';
 
 import { User } from 'src/app/shared/model/user.model';
+import { UserEntityService } from '../store/entities/services/user-entity.service';
 
 
 
@@ -9,23 +12,18 @@ import { User } from 'src/app/shared/model/user.model';
 export class AuthService {
 
     // constructor(private http:HttpClient) {
-    constructor() {
-
+    constructor(
+        private userService: UserEntityService,
+    ) {
     }
 
     login(username: string, password: string): Observable<User> {
         // check users in cache and return if found match
-        return from([this.authenticate(username, password)]);
-    }
-
-    authenticate(username: string, password: string): User {
-        // const user: any = Object.values(USERS).find(user => user.email === email);
-
-        // if (user && user.password == password) {
-        //     return user;
-        // } else {
-        //     return undefined;
-        // }
-        return ({ id: null, username, password })
+        // return from([this.authenticate(username, password)]);
+        return this.userService.entities$.pipe(
+            map(users => users.find(u => u.username === username)),
+            map(user => !!user && user.password === password ? user : undefined),
+            first(),
+        );
     }
 }

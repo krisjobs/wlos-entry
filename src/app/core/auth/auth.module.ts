@@ -12,8 +12,11 @@ import { authFeatureKey, authReducer } from '../store/reducers';
 import { AuthGuard } from './auth.guard';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from '../store/effects/auth.effects';
-import { EntityDefinitionService, EntityServices } from '@ngrx/data';
+import { EntityDataService, EntityDefinitionService, EntityServices } from '@ngrx/data';
 import { entityMetadata } from '../store/entities/auth.metadata';
+import { User } from 'src/app/shared/model';
+import { USERS } from 'src/assets/db-data';
+import { UserDataService } from '../store/entities/services/user-data.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { entityMetadata } from '../store/entities/auth.metadata';
     ReactiveFormsModule,
     MaterialLoginModule,
 
-    RouterModule.forChild([{ path: '', component: LoginComponent }]),
+    RouterModule.forChild([{
+      path: '',
+      component: LoginComponent
+    }]),
     StoreModule.forFeature(authFeatureKey, authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
@@ -46,11 +52,9 @@ export class AuthModule {
   }
 
   constructor(
-    private eds: EntityDefinitionService,
-    entityServices: EntityServices
+
   ) {
-    eds.registerMetadataMap(entityMetadata)
-    entityServices.getEntityCollectionService('User')
+
   }
 
 }

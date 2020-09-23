@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { EntityServices } from '@ngrx/data';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/app/shared/model';
 import { AppState } from '../store/reducers';
 import { isLoggedIn } from '../store/selectors/auth.selectors';
 
@@ -11,9 +13,8 @@ export class AuthGuard implements CanActivate {
 
     constructor(
         private store: Store<AppState>,
-        private router: Router
+        private router: Router,
     ) {
-
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
@@ -23,9 +24,6 @@ export class AuthGuard implements CanActivate {
                 if (!loggedIn) {
                     this.router.navigateByUrl('/login')
                 }
-                // else {
-                //     this.router.navigateByUrl('/transactions')
-                // }
             })
         )
     }

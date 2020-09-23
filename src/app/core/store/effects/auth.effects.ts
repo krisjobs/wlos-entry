@@ -1,18 +1,35 @@
 import { Injectable } from "@angular/core";
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { tap } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { first, tap } from 'rxjs/operators';
 import { AuthActions } from '../actions';
+import { AppState } from '../reducers';
+import { isLoggedIn } from '../selectors/auth.selectors';
 
-@Injectable() 
+@Injectable()
 export class AuthEffects {
+
+    bypassLogin$ = createEffect(
+        () => this.store.pipe(
+            select(isLoggedIn),
+            tap(loggedIn => {
+                console.log(this.router.url)
+                if (loggedIn && this.router.url === '/') {
+                    this.router.navigateByUrl('/transactions')
+                }
+            }),
+            first()
+        ),
+        { dispatch: false }
+    );
 
     login$ = createEffect(
         () => this.actions$.pipe(
-        ofType(AuthActions.login),
-        tap(action => localStorage.setItem('user', JSON.stringify(action.user)))
+            ofType(AuthActions.login),
+            tap(action => localStorage.setItem('user', JSON.stringify(action.user)))
         ),
-        {dispatch: false}
+        { dispatch: false }
     );
 
     logout$ = createEffect(
@@ -23,14 +40,15 @@ export class AuthEffects {
                 this.router.navigateByUrl('/login')
             })
         ),
-        {dispatch: false}
+        { dispatch: false }
     );
 
     constructor(
+        private store: Store<AppState>,
         private actions$: Actions,
         private router: Router,
-        ) {
-        
+    ) {
+
     }
 
 

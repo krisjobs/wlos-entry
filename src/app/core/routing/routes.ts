@@ -24,7 +24,6 @@ export const transactionsRoutes: Routes = [
         resolve: {
             transactions: TransactionsResolver
         }
-
     },
     {
         path: ':transactionUrl',

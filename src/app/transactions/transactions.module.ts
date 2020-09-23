@@ -10,7 +10,6 @@ import { entityConfig, entityMetadata } from 'src/app/core/store/entities/transa
 import { TransactionEntityService } from '../core/store/entities/services/transaction-entity.service';
 import { TransactionsResolver } from './services/transactions.resolver';
 import { TransactionDataService } from '../core/store/entities/services/transaction-data.service';
-import { CoreService } from '../core/core.service';
 
 
 @NgModule({

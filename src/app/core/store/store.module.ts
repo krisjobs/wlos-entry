@@ -8,9 +8,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment';
 import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { metaReducers, reducers, routerFeatureKey } from './reducers';
-import { EntityDataModule } from '@ngrx/data';
-import { entityConfig } from './entities/auth.metadata';
+import { EntityDataModule, EntityDataService, EntityDefinitionService, EntityServices } from '@ngrx/data';
+import { entityConfig, entityMetadata } from './entities/auth.metadata';
 import { CoreService } from '../core.service';
+import { UserDataService } from './entities/services/user-data.service';
+import { User } from 'src/app/shared/model';
+import { USERS } from 'src/assets/db-data';
+import { UserEntityService } from './entities/services/user-entity.service';
 
 
 @NgModule({
@@ -33,6 +37,22 @@ import { CoreService } from '../core.service';
       routerState: RouterState.Minimal
     }),
     EntityDataModule.forRoot(entityConfig),
+  ],
+  providers: [
+    UserDataService,
+    UserEntityService,
   ]
 })
-export class StoreModule { }
+export class StoreModule {
+
+  constructor(
+    private entityDefinitionService: EntityDefinitionService,
+    private entityServices: EntityServices,
+    private entityDataService: EntityDataService,
+    private userDataService: UserDataService,
+  ) {
+    entityDefinitionService.registerMetadataMap(entityMetadata);
+    entityDataService.registerService('User', userDataService)
+    this.entityServices.getEntityCollectionService<User>('User').addAllToCache(USERS);
+  }
+}
