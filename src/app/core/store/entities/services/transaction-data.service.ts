@@ -7,7 +7,7 @@ import { Transaction } from 'src/app/shared/model';
 import { TRANSACTIONS } from 'src/assets/db-data';
 
 @Injectable()
-export class TransactionDataService extends DefaultDataService <Transaction>{
+export class TransactionDataService extends DefaultDataService<Transaction>{
 
     constructor(http: HttpClient, httpUrlGenerator: HttpUrlGenerator) {
         super('Transaction', http, httpUrlGenerator);

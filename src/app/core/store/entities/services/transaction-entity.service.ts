@@ -4,9 +4,10 @@ import { Transaction } from 'src/app/shared/model';
 
 @Injectable()
 export class TransactionEntityService extends EntityCollectionServiceBase<Transaction> {
-    
+
     constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
         super('Transaction', serviceElementsFactory)
+
     }
 
 }

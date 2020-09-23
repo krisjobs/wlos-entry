@@ -6,14 +6,6 @@ import { TransactionEntityService } from 'src/app/core/store/entities/services/t
 import { AppState } from 'src/app/core/store/reducers';
 
 
-export interface PeriodicElement {
-
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-
-];
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -29,9 +21,10 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-    private coreService: CoreService, 
+    private coreService: CoreService,
     private transactionsService: TransactionEntityService,
-    ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

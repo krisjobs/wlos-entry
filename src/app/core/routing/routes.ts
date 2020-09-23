@@ -13,24 +13,24 @@ export const appRoutes: Routes = [
     },
     {
         path: '**',
-        redirectTo: '/'
+        redirectTo: '/',
     }
 ];
 
 export const transactionsRoutes: Routes = [
     {
-      path: '',
-      component: HomeComponent,
-      resolve: {
-          transactions: TransactionsResolver
-      } 
-  
+        path: '',
+        component: HomeComponent,
+        resolve: {
+            transactions: TransactionsResolver
+        }
+
     },
     {
-      path: ':transactionUrl',
-      component: TransactionComponent,
-      resolve: {
-          transactions: TransactionsResolver
-      }
+        path: ':transactionUrl',
+        component: TransactionComponent,
+        resolve: {
+            transactions: TransactionsResolver
+        }
     }
-  ];
+];

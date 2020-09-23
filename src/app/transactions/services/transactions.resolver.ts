@@ -11,20 +11,21 @@ export class TransactionsResolver implements Resolve<boolean> {
 
     constructor(
         private transactionsService: TransactionEntityService,
-        ) {
-
+        private coreService: CoreService,
+    ) {
     }
 
     resolve(route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> {
-            return this.transactionsService.loaded$.pipe(
-                tap(loaded => {
-                    if(!loaded) {
-                        this.transactionsService.getAll();
-                    }
-                }),
-                filter(loaded => !!loaded),
-                first()
-            )            
-        }
+        return this.transactionsService.loaded$.pipe(
+            tap(loaded => {
+                if (!loaded) {
+                    this.coreService.registerLoadingObservable(this.transactionsService.loading$)
+                    this.transactionsService.getAll();
+                }
+            }),
+            filter(loaded => !!loaded),
+            first()
+        )
+    }
 }

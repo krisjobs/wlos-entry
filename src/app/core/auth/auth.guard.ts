@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
         private store: Store<AppState>,
         private router: Router
     ) {
-        
+
     }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
@@ -23,6 +23,9 @@ export class AuthGuard implements CanActivate {
                 if (!loggedIn) {
                     this.router.navigateByUrl('/login')
                 }
+                // else {
+                //     this.router.navigateByUrl('/transactions')
+                // }
             })
         )
     }
