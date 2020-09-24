@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { from, Observable } from 'rxjs';
-import { debounceTime, filter, first, map, tap } from 'rxjs/operators';
-import { CoreService } from 'src/app/core/core.service';
+import { filter, first, map, tap } from 'rxjs/operators';
+import { BeneficiaryEntityService } from 'src/app/core/store/entities/services/beneficiary-entity.service';
 import { TransactionEntityService } from 'src/app/core/store/entities/services/transaction-entity.service';
-import { USERS } from 'src/assets/db-data';
 
 @Injectable()
-export class TransactionsResolver implements Resolve<boolean> {
+export class TransactionResolver implements Resolve<boolean> {
 
     constructor(
         private transactionsService: TransactionEntityService,

@@ -1,83 +1,82 @@
-import { Transaction, User } from 'src/app/shared/model';
+import { Beneficiary, Transaction, User } from 'src/app/shared/model';
+import { TransactionState, TransactionType } from 'src/app/shared/shared.enums';
 import { v4 as uuid } from 'uuid';
+import { randomDate, randomEnum } from './utils';
 
 export const USERS: User[] = [
   {
     id: uuid(),
     username: 'username',
     password: 'password'
+  },
+  {
+    id: uuid(),
+    username: 'admin',
+    password: 'sudo'
   }
 ];
 
-export const TRANSACTIONS: Transaction[] = [
+export const BENEFICIARIES: Beneficiary[] = [
   {
     id: uuid(),
-    position: 1, 
-    name: 'Hydrogen', 
-    weight: 1.0079, 
-    symbol: 'H',
+    contractorName: 'The Tea Lounge',
+    logo: 'the-tea-lounge.png',
   },
   {
     id: uuid(),
-    position: 2, 
-    name: 'Helium', 
-    weight: 4.0026, 
-    symbol: 'He',
+    contractorName: 'Texaco',
+    logo: '',
   },
   {
     id: uuid(),
-    position: 3, 
-    name: 'Lithium', 
-    weight: 6.941, 
-    symbol: 'Li',
+    contractorName: 'Amazon Online Store',
+    logo: 'amazon-online-store.png',
   },
   {
     id: uuid(),
-    position: 4, 
-    name: 'Beryllium', 
-    weight: 9.0122, 
-    symbol: 'Be',
+    contractorName: '7-Eleven',
+    logo: '7-eleven',
   },
   {
     id: uuid(),
-    position: 5, 
-    name: 'Boron', 
-    weight: 10.811, 
-    symbol: 'B',
+    contractorName: 'H&M Online Store',
+    logo: 'hm-online-store',
   },
   {
     id: uuid(),
-    position: 6, 
-    name: 'Carbon', 
-    weight: 12.0107, 
-    symbol: 'C',
+    contractorName: 'Jerry Hildreth',
+    logo: 'jerry-hildreth.png',
   },
   {
     id: uuid(),
-    position: 7, 
-    name: 'Nitrogen', 
-    weight: 14.0067, 
-    symbol: 'N',
+    contractorName: 'Lawrence Pearson',
+    logo: 'lawrence-pearson.png',
   },
   {
     id: uuid(),
-    position: 8, 
-    name: 'Oxygen', 
-    weight: 15.9994, 
-    symbol: 'O',
+    contractorName: 'Whole Foods',
+    logo: 'whole-foods.png',
   },
   {
     id: uuid(),
-    position: 9, 
-    name: 'Fluorine', 
-    weight: 18.9984, 
-    symbol: 'F',
-  },
-  {
-    id: uuid(),
-    position: 10, 
-    name: 'Neon', 
-    weight: 20.1797, 
-    symbol: 'Ne',
-  },
+    contractorName: 'Southern Electric Company',
+    logo: 'southern-electric-company.png',
+  }
 ];
+
+const numTransactions = 42;
+const maxAmount = 420;
+const startDate = new Date(2020, 4, 20);
+const endDate = new Date();
+const numBeneficiaries = BENEFICIARIES.length;
+
+export const TRANSACTIONS: Transaction[] = [...Array(numTransactions)].map(
+  _ => ({
+    id: uuid(),
+    amount: Number((Math.random() * maxAmount).toFixed(2)),
+    state: randomEnum(TransactionState),
+    type: randomEnum(TransactionType),
+    timestamp: randomDate(startDate, endDate).getTime(),
+    beneficiaryId: BENEFICIARIES[Math.floor(Math.random() * numBeneficiaries)].id,
+  })
+);

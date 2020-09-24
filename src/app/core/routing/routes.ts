@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from 'src/app/transactions/components/home/home.component';
 import { TransactionComponent } from 'src/app/transactions/components/transaction/transaction.component';
-import { TransactionsResolver } from 'src/app/transactions/services/transactions.resolver';
+import { BeneficiaryResolver } from 'src/app/transactions/services/beneficiary.resolver';
+import { TransactionResolver } from 'src/app/transactions/services/transaction.resolver';
 import { AuthGuard } from '../auth/auth.guard';
 
 
@@ -22,14 +23,16 @@ export const transactionsRoutes: Routes = [
         path: '',
         component: HomeComponent,
         resolve: {
-            transactions: TransactionsResolver
+            transactions: TransactionResolver,
+            beneficiaries: BeneficiaryResolver,
         }
     },
     {
         path: ':transactionUrl',
         component: TransactionComponent,
         resolve: {
-            transactions: TransactionsResolver
+            transactions: TransactionResolver,
+            beneficiaries: BeneficiaryResolver,
         }
     }
 ];

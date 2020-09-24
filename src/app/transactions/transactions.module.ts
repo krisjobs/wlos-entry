@@ -8,8 +8,11 @@ import { MaterialTransactionsModule } from '../shared/material/material-transact
 import { EntityDataModule, EntityDataService, EntityDefinitionService } from '@ngrx/data';
 import { entityConfig, entityMetadata } from 'src/app/core/store/entities/transactions.metadata'
 import { TransactionEntityService } from '../core/store/entities/services/transaction-entity.service';
-import { TransactionsResolver } from './services/transactions.resolver';
+import { TransactionResolver } from './services/transaction.resolver';
 import { TransactionDataService } from '../core/store/entities/services/transaction-data.service';
+import { BeneficiaryDataService } from '../core/store/entities/services/beneficiary-data.service';
+import { BeneficiaryEntityService } from '../core/store/entities/services/beneficiary-entity.service';
+import { BeneficiaryResolver } from './services/beneficiary.resolver';
 
 
 @NgModule({
@@ -23,9 +26,12 @@ import { TransactionDataService } from '../core/store/entities/services/transact
     RouterModule.forChild(transactionsRoutes),
   ],
   providers: [
+    BeneficiaryEntityService,
     TransactionEntityService,
-    TransactionsResolver,
+    BeneficiaryDataService,
     TransactionDataService,
+    TransactionResolver,
+    BeneficiaryResolver,
   ]
 })
 export class TransactionsModule {
@@ -34,10 +40,11 @@ export class TransactionsModule {
     private entityDefinitionService: EntityDefinitionService,
     private entityDataService: EntityDataService,
     private transactionDataService: TransactionDataService,
+    private beneficiaryDataService: BeneficiaryDataService,
   ) {
     entityDefinitionService.registerMetadataMap(entityMetadata);
     entityDataService.registerService('Transaction', transactionDataService)
-
+    entityDataService.registerService('Beneficiary', beneficiaryDataService)
   }
 
 }

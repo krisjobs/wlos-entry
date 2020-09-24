@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
 
   public transactions$ = this.transactionsService.entities$;
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['date', 'beneficiary', 'amount'];
 
   constructor(
     private store: Store<AppState>,
