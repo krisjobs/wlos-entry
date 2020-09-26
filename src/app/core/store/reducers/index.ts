@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 
 
 export { reducer as authReducer, featureKey as authFeatureKey } from './auth.reducers';
+export { reducer as transactionReducer, featureKey as transactionFeatureKey } from './transaction.reducers';
 
 export const routerFeatureKey = 'router';
 

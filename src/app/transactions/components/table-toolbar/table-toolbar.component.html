@@ -15,21 +15,14 @@
 
         <span class="sort-by">Sort by</span>
         
-        <mat-button-toggle-group name="sortColumns">
-            <mat-button-toggle value="date">
-                <span class="button-text">Date</span>
-                <mat-icon>keyboard_arrow_down</mat-icon>
-                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
-            </mat-button-toggle>
-            <mat-button-toggle value="beneficiary">
-                <span class="button-text">Beneficiary</span>
-                <mat-icon>keyboard_arrow_down</mat-icon>
-                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
-            </mat-button-toggle>
-            <mat-button-toggle value="amount">
-                <span class="button-text">Amount</span>
-                <mat-icon>keyboard_arrow_down</mat-icon>
-                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
+        <mat-button-toggle-group 
+            *ngIf="sortCriteria$ | async as sortCriteria"
+            name="sortColumns">
+            <mat-button-toggle *ngFor="let buttonType of sortButtons" [value]="buttonType" (change)="onSortChange(buttonType)">
+                <span class="button-text"> {{ SortCriterion[buttonType] }} </span>
+                <mat-icon *ngIf="sortCriteria.sortType === buttonType">
+                    {{ sortCriteria.sortDescending ? 'keyboard_arrow_down' : 'keyboard_arrow_up'}}
+                </mat-icon>
             </mat-button-toggle>
         </mat-button-toggle-group>
     

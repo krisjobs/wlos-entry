@@ -24,7 +24,8 @@ import { LogoPathPipe } from './pipes/logo-path.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormService } from './services/form.service';
 import { EffectsModule, USER_PROVIDED_EFFECTS } from '@ngrx/effects';
-// import { formServiceProvider } from './services/form.service.provider';
+import { StoreModule } from '@ngrx/store';
+import { transactionFeatureKey, transactionReducer } from 'src/app/core/store/reducers';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { EffectsModule, USER_PROVIDED_EFFECTS } from '@ngrx/effects';
     MaterialTransactionsModule,
     ReactiveFormsModule,
     RouterModule.forChild(transactionsRoutes),
+    StoreModule.forFeature(transactionFeatureKey, transactionReducer),
     EffectsModule.forFeature([]),
   ],
   providers: [

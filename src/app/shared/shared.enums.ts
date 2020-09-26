@@ -9,3 +9,9 @@ export enum TransactionState {
     Confirmed,
     Received
 }
+
+export enum SortCriterion {
+    Date,
+    Beneficiary,
+    Amount
+}
