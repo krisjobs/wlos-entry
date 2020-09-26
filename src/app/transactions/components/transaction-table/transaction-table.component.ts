@@ -24,6 +24,7 @@ export class TransactionTableComponent implements OnInit {
     switchMap(transactions => this.beneficiaryService.entityMap$.pipe(
       map(beneficiaries => transactions
         .map((transaction): ExtendedTransaction => ({
+          id: transaction.id,
           timestamp: transaction.timestamp,
           type: TransactionType[transaction.type],
           contractorName: beneficiaries[transaction.beneficiaryId].contractorName,
@@ -81,16 +82,18 @@ export class TransactionTableComponent implements OnInit {
   }
 
   public colorRow = (state: TransactionState): string => {
-    console.log(state)
     switch (state) {
       case TransactionState.Paid:
-        return 'paid color-cell';
+        return 'paid';
       case TransactionState.Confirmed:
-        return 'confirmed color-cell';
+        return 'confirmed';
       case TransactionState.Received:
-        return 'received color-cell';
+        return 'received';
     }
   }
+
+  public routerLink = (transactionId: string) => [{
+  }];
 
   constructor(
     private store: Store<AppState>,
@@ -101,4 +104,5 @@ export class TransactionTableComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

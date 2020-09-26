@@ -10,6 +10,7 @@ export interface Transaction {
 }
 
 export interface ExtendedTransaction {
+    id: string;    // needed for router
     timestamp: number;
     type: string;    // TransactionType -> string
     contractorName: string;    // from beneficiary
