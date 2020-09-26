@@ -17,6 +17,7 @@ import { entityMetadata } from '../store/entities/auth.metadata';
 import { User } from 'src/app/shared/model';
 import { USERS } from 'src/assets/db-data';
 import { UserDataService } from '../store/entities/services/user-data.service';
+import { authRoutes } from '../routing/routes';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,12 @@ import { UserDataService } from '../store/entities/services/user-data.service';
     ReactiveFormsModule,
     MaterialLoginModule,
 
-    RouterModule.forChild([{
-      path: '',
-      component: LoginComponent
-    }]),
+    RouterModule.forChild(authRoutes),
     StoreModule.forFeature(authFeatureKey, authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
   exports: [
+    RouterModule,
     LoginComponent
   ]
 })

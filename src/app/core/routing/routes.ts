@@ -4,6 +4,14 @@ import { TransactionComponent } from 'src/app/transactions/components/transactio
 import { BeneficiaryResolver } from 'src/app/transactions/services/beneficiary.resolver';
 import { TransactionResolver } from 'src/app/transactions/services/transaction.resolver';
 import { AuthGuard } from '../auth/auth.guard';
+import { LoginComponent } from '../auth/login/login.component';
+
+export const authRoutes: Routes = [
+    {
+        path: '',
+        component: LoginComponent
+    }
+];
 
 
 export const appRoutes: Routes = [

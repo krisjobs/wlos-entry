@@ -14,7 +14,6 @@ export class AuthEffects {
         () => this.store.pipe(
             select(isLoggedIn),
             tap(loggedIn => {
-                console.log(this.router.url)
                 if (loggedIn && this.router.url === '/') {
                     this.router.navigateByUrl('/transactions')
                 }

@@ -15,7 +15,7 @@ import { TransactionType } from 'src/app/shared/shared.enums';
 export class TransactionTableComponent implements OnInit {
 
   
-  public transactions$ = this.transactionsService.entities$.pipe(
+  public transactions$ = this.transactionsService.filteredEntities$.pipe(
     switchMap(transactions => this.beneficiaryService.entityMap$.pipe(
       map(beneficiaries => transactions.map((transaction): ExtendedTransaction => ({
         timestamp: transaction.timestamp,

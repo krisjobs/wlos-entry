@@ -1,5 +1,6 @@
 mat-toolbar {
     margin: 15px;
+    margin-left: 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,14 +15,10 @@ mat-form-field {
 mat-icon {
     margin-left: 10px;
 }
-
-.example-form {
-    flex: 1 1 25%;
-    margin-right: 42px;
-} 
   
 .example-full-width {
     width: 100%;
+    margin-right: 42px;
 }
 
 .sort-by {

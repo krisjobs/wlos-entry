@@ -21,6 +21,10 @@ import { DateConverterPipe } from './pipes/date-converter.pipe';
 import { AmountConverterPipe } from './pipes/amount-converter.pipe';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { LogoPathPipe } from './pipes/logo-path.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormService } from './services/form.service';
+import { EffectsModule, USER_PROVIDED_EFFECTS } from '@ngrx/effects';
+// import { formServiceProvider } from './services/form.service.provider';
 
 
 @NgModule({
@@ -39,7 +43,9 @@ import { LogoPathPipe } from './pipes/logo-path.pipe';
   imports: [
     CommonModule,
     MaterialTransactionsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(transactionsRoutes),
+    EffectsModule.forFeature([]),
   ],
   providers: [
     BeneficiaryEntityService,
@@ -48,19 +54,20 @@ import { LogoPathPipe } from './pipes/logo-path.pipe';
     TransactionDataService,
     TransactionResolver,
     BeneficiaryResolver,
+    FormService
   ]
 })
 export class TransactionsModule {
 
   constructor(
-    private entityDefinitionService: EntityDefinitionService,
-    private entityDataService: EntityDataService,
-    private transactionDataService: TransactionDataService,
-    private beneficiaryDataService: BeneficiaryDataService,
+    entityDefinitionService: EntityDefinitionService,
+    entityDataService: EntityDataService,
+    transactionDataService: TransactionDataService,
+    beneficiaryDataService: BeneficiaryDataService,
   ) {
     entityDefinitionService.registerMetadataMap(entityMetadata);
-    entityDataService.registerService('Transaction', transactionDataService)
-    entityDataService.registerService('Beneficiary', beneficiaryDataService)
+    entityDataService.registerService('Transaction', transactionDataService);
+    entityDataService.registerService('Beneficiary', beneficiaryDataService);
   }
 
 }

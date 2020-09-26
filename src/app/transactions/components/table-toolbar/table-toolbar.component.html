@@ -1,11 +1,15 @@
 <mat-toolbar>
 
-    <form class="example-form">
-        <mat-form-field class="example-full-width">
-            <!-- <mat-label>Favorite food</mat-label> -->
-            <input matInput placeholder="Search by typing...">
-        </mat-form-field>
-    </form>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of autocompleteOptions$ | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+
+    <mat-form-field class="example-full-width">
+        <!-- <mat-label>Favorite food</mat-label> -->
+        <input type="text" matInput placeholder="Search by typing..." [formControl]="searchField" [matAutocomplete]="auto">
+    </mat-form-field>
 
     <div>
 

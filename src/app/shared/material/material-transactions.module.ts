@@ -8,6 +8,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [],
@@ -19,6 +20,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatToolbarModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatAutocompleteModule,
     MatButtonToggleModule,
     MatGridListModule,
     MatInputModule,
