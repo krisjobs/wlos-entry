@@ -20,47 +20,47 @@ export const BENEFICIARIES: Beneficiary[] = [
   {
     id: uuid(),
     contractorName: 'The Tea Lounge',
-    logo: 'the-tea-lounge.png',
+    logoPath: 'the-tea-lounge.png',
   },
   {
     id: uuid(),
     contractorName: 'Texaco',
-    logo: '',
+    logoPath: 'texaco.png',
   },
   {
     id: uuid(),
     contractorName: 'Amazon Online Store',
-    logo: 'amazon-online-store.png',
+    logoPath: 'amazon-online-store.png',
   },
   {
     id: uuid(),
     contractorName: '7-Eleven',
-    logo: '7-eleven',
+    logoPath: '7-eleven.png',
   },
   {
     id: uuid(),
     contractorName: 'H&M Online Store',
-    logo: 'hm-online-store',
+    logoPath: 'hm-online-store.png',
   },
   {
     id: uuid(),
     contractorName: 'Jerry Hildreth',
-    logo: 'jerry-hildreth.png',
+    logoPath: 'jerry-hildreth.png',
   },
   {
     id: uuid(),
     contractorName: 'Lawrence Pearson',
-    logo: 'lawrence-pearson.png',
+    logoPath: 'lawrence-pearson.png',
   },
   {
     id: uuid(),
     contractorName: 'Whole Foods',
-    logo: 'whole-foods.png',
+    logoPath: 'whole-foods.png',
   },
   {
     id: uuid(),
     contractorName: 'Southern Electric Company',
-    logo: 'southern-electric-company.png',
+    logoPath: 'southern-electric-company.png',
   }
 ];
 

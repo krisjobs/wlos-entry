@@ -8,3 +8,11 @@ export interface Transaction {
     type: TransactionType;
     state: TransactionState;
 }
+
+export interface ExtendedTransaction {
+    timestamp: number;
+    type: string;    // TransactionType -> string
+    contractorName: string;    // from beneficiary
+    logoPath: string;    // from beneficiary
+    amount: number; 
+}

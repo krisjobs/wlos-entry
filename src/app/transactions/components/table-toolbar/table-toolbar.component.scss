@@ -1,0 +1,36 @@
+mat-toolbar {
+    margin: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+mat-form-field {
+    opacity: 60%;
+}
+
+mat-icon {
+    margin-left: 10px;
+}
+
+.example-form {
+    flex: 1 1 25%;
+    margin-right: 42px;
+} 
+  
+.example-full-width {
+    width: 100%;
+}
+
+.sort-by {
+    margin-right: 20px;
+    font-size: 0.75em;
+    font-weight: bolder;
+}
+
+.button-text {
+    text-transform: uppercase;
+    font-size: 0.9em;
+}

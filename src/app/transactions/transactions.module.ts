@@ -13,12 +13,28 @@ import { TransactionDataService } from '../core/store/entities/services/transact
 import { BeneficiaryDataService } from '../core/store/entities/services/beneficiary-data.service';
 import { BeneficiaryEntityService } from '../core/store/entities/services/beneficiary-entity.service';
 import { BeneficiaryResolver } from './services/beneficiary.resolver';
+import { TransferComponent } from './components/transfer/transfer.component';
+import { TransactionTableComponent } from './components/transaction-table/transaction-table.component';
+import { TileHeaderComponent } from './components/tile-header/tile-header.component';
+import { TableToolbarComponent } from './components/table-toolbar/table-toolbar.component';
+import { DateConverterPipe } from './pipes/date-converter.pipe';
+import { AmountConverterPipe } from './pipes/amount-converter.pipe';
+import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
+import { LogoPathPipe } from './pipes/logo-path.pipe';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    TransactionComponent
+    TransactionComponent,
+    TransferComponent,
+    TransactionTableComponent,
+    TileHeaderComponent,
+    TableToolbarComponent,
+    DateConverterPipe,
+    AmountConverterPipe,
+    TransactionDetailsComponent,
+    LogoPathPipe
   ],
   imports: [
     CommonModule,

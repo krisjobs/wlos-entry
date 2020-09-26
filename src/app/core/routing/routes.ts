@@ -30,9 +30,5 @@ export const transactionsRoutes: Routes = [
     {
         path: ':transactionUrl',
         component: TransactionComponent,
-        resolve: {
-            transactions: TransactionResolver,
-            beneficiaries: BeneficiaryResolver,
-        }
     }
 ];

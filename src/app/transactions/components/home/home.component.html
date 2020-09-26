@@ -1,36 +1,11 @@
 <mat-grid-list cols="3" rowHeight="5:4" gutterSize="20px">
 
-  <mat-grid-tile>Make a transfer</mat-grid-tile>
+  <mat-grid-tile>
+    <app-transfer></app-transfer>
+  </mat-grid-tile>
 
   <mat-grid-tile rowspan="2" colspan="2">
-    <!-- <div style="display: flex;
-      flex-direction: column;
-      position: relative;"> -->
-    <table mat-table [dataSource]="transactions$ | async" class="mat-elevation-z8"
-      style="display:block; height: inherit !important; overflow: auto;">
-
-      <!-- Date Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let element"> {{element.timestamp}} </td>
-      </ng-container>
-
-      <!-- Beneficiary Column -->
-      <ng-container matColumnDef="beneficiary">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-      </ng-container>
-
-      <!-- Amount Column -->
-      <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef> Symbol </th>
-        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
-      </ng-container>
-
-      <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
-
+    <app-transaction-table></app-transaction-table>
   </mat-grid-tile>
+
 </mat-grid-list>

@@ -13,14 +13,9 @@ import { AppState } from 'src/app/core/store/reducers';
 })
 export class HomeComponent implements OnInit {
 
-  public transactions$ = this.transactionsService.entities$;
-
-  displayedColumns: string[] = ['date', 'beneficiary', 'amount'];
-
   constructor(
     private store: Store<AppState>,
     private coreService: CoreService,
-    private transactionsService: TransactionEntityService,
   ) {
   }
 

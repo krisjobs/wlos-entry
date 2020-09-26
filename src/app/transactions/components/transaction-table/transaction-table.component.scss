@@ -1,0 +1,28 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+
+table { 
+    width: 100%;
+    display: block;
+    overflow: auto;
+}
+
+.mat-column-amount {
+    text-align: right;
+    font-weight: bolder;
+}
+
+.mat-column-date {
+    width: 20%;
+}
+
+.mat-column-details {
+    width: 100%;
+}

@@ -1,0 +1,34 @@
+<mat-toolbar>
+
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <!-- <mat-label>Favorite food</mat-label> -->
+            <input matInput placeholder="Search by typing...">
+        </mat-form-field>
+    </form>
+
+    <div>
+
+        <span class="sort-by">Sort by</span>
+        
+        <mat-button-toggle-group name="sortColumns">
+            <mat-button-toggle value="date">
+                <span class="button-text">Date</span>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
+            </mat-button-toggle>
+            <mat-button-toggle value="beneficiary">
+                <span class="button-text">Beneficiary</span>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
+            </mat-button-toggle>
+            <mat-button-toggle value="amount">
+                <span class="button-text">Amount</span>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+                <!-- <mat-icon>keyboard_arrow_up</mat-icon> -->
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+    
+    </div>
+    
+</mat-toolbar>

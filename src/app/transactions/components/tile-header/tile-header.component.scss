@@ -1,0 +1,25 @@
+$opacity: 80%; 
+
+:host {
+    background: #0c8397;
+    padding: 2%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+mat-icon {
+    opacity: $opacity;
+    font-size: 2em;
+    font-weight: bold;
+    color: #ffffff;
+    align-self: baseline;
+}
+
+span {
+    opacity: $opacity;
+    font-size: 1.42em;
+    color: #ffffff;
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ExtendedTransaction } from 'src/app/shared/model/transaction.model';
 
 @Component({
   selector: 'app-transaction',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionComponent implements OnInit {
 
+  @Input() transaction: ExtendedTransaction;
+
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.transaction.logoPath)
   }
 
 }

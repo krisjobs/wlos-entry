@@ -1,1 +1,6 @@
-<p>transaction works!</p>
+<img [src]="transaction.logoPath | logoPath">
+
+<div class="vertical-group">
+    <span class="contractor-name"> {{ transaction.contractorName }} </span>
+    <span> {{ transaction.type }} </span>
+</div>

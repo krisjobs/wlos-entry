@@ -1,0 +1,24 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+img {
+    width: 10%;
+    height: auto;
+    margin-right: 20px;
+}
+
+.vertical-group {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.contractor-name {
+    font-weight: bolder;
+}
