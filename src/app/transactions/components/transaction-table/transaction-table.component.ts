@@ -9,7 +9,7 @@ import { TransactionEntityService } from 'src/app/core/store/entities/services/t
 import { AppState } from 'src/app/core/store/reducers';
 import { selectSortCriteria } from 'src/app/core/store/selectors/transaction.selectors';
 import { ExtendedTransaction } from 'src/app/shared/model/transaction.model';
-import { SortCriterion, TransactionType } from 'src/app/shared/shared.enums';
+import { SortCriterion, TransactionState, TransactionType } from 'src/app/shared/shared.enums';
 
 @Component({
   selector: 'app-transaction-table',
@@ -19,7 +19,7 @@ import { SortCriterion, TransactionType } from 'src/app/shared/shared.enums';
 export class TransactionTableComponent implements OnInit {
 
   @ViewChild(MatTable, { static: false }) table: MatTable<ExtendedTransaction>;
-  
+
   public transactions$ = this.transactionsService.filteredEntities$.pipe(
     switchMap(transactions => this.beneficiaryService.entityMap$.pipe(
       map(beneficiaries => transactions
@@ -28,13 +28,15 @@ export class TransactionTableComponent implements OnInit {
           type: TransactionType[transaction.type],
           contractorName: beneficiaries[transaction.beneficiaryId].contractorName,
           logoPath: beneficiaries[transaction.beneficiaryId].logoPath,
-          amount: transaction.amount}))
+          amount: transaction.amount,
+          state: transaction.state,
+        }))
       )
     )),
     switchMap(transactions => this.store.pipe(
       select(selectSortCriteria),
       map(({ sortType, sortDescending }) => {
-        switch(sortType) {
+        switch (sortType) {
           case SortCriterion.Date:
             transactions.sort((t1, t2) => this.dateComparer(t1, t2, sortDescending));
             this.table && this.table.renderRows();
@@ -54,7 +56,7 @@ export class TransactionTableComponent implements OnInit {
     )),
   );
 
-  public displayedColumns = ['date', 'details', 'amount'];
+  public displayedColumns = ['color', 'date', 'details', 'amount'];
 
   private dateComparer = (t1: ExtendedTransaction, t2: ExtendedTransaction, sortDescending: boolean) => {
     return sortDescending ? t2.timestamp - t1.timestamp : t1.timestamp - t2.timestamp;
@@ -77,7 +79,19 @@ export class TransactionTableComponent implements OnInit {
   private amountComparer = (t1: ExtendedTransaction, t2: ExtendedTransaction, sortDescending: boolean) => {
     return sortDescending ? t2.amount - t1.amount : t1.amount - t2.amount;
   }
-  
+
+  public colorRow = (state: TransactionState): string => {
+    console.log(state)
+    switch (state) {
+      case TransactionState.Paid:
+        return 'paid color-cell';
+      case TransactionState.Confirmed:
+        return 'confirmed color-cell';
+      case TransactionState.Received:
+        return 'received color-cell';
+    }
+  }
+
   constructor(
     private store: Store<AppState>,
     private transactionsService: TransactionEntityService,

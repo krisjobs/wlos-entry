@@ -14,5 +14,6 @@ export interface ExtendedTransaction {
     type: string;    // TransactionType -> string
     contractorName: string;    // from beneficiary
     logoPath: string;    // from beneficiary
-    amount: number; 
+    amount: number;
+    state: TransactionState;
 }

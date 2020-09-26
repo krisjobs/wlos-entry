@@ -27,3 +27,22 @@ table {
 .mat-column-details {
     width: 100%;
 }
+
+.color-cell {
+    opacity: 50%;
+    margin: 15px;
+    position: relative;
+    right: 17px;
+}
+
+.paid {
+    background-color: #c42124;
+}
+
+.confirmed {
+    background-color: #c69417;
+}
+
+.received {
+    background-color: #11a283;
+}

@@ -6,26 +6,32 @@
 
     <ng-container matColumnDef="date">
         <!-- <th mat-header-cell *matHeaderCellDef> Date </th> -->
-        <td mat-cell *matCellDef="let transaction"> 
+        <td mat-cell *matCellDef="let transaction">
             {{ transaction.timestamp | dateConverter }}
         </td>
     </ng-container>
 
     <ng-container matColumnDef="details">
         <!-- <th mat-header-cell *matHeaderCellDef> Details </th> -->
-        <td mat-cell *matCellDef="let transaction"> 
+        <td mat-cell *matCellDef="let transaction">
             <app-transaction [transaction]="transaction"></app-transaction>
         </td>
     </ng-container>
 
     <ng-container matColumnDef="amount">
         <!-- <th mat-header-cell *matHeaderCellDef> Amount </th> -->
-        <td mat-cell *matCellDef="let transaction"> 
+        <td mat-cell *matCellDef="let transaction">
             {{ transaction.amount | amountConverter }}
         </td>
     </ng-container>
 
+    <ng-container matColumnDef="color" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let transaction" [ngClass]="colorRow(transaction.state)">
+        </td>
+    </ng-container>
+
     <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr> -->
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-row *matRowDef="let transaction; columns: displayedColumns;"></tr>
 
 </table>
