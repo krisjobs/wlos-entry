@@ -26,6 +26,7 @@ import { FormService } from './services/form.service';
 import { EffectsModule, USER_PROVIDED_EFFECTS } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { transactionFeatureKey, transactionReducer } from 'src/app/core/store/reducers';
+import { AmountInputDirective } from './directives/amount-input.directive';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { transactionFeatureKey, transactionReducer } from 'src/app/core/store/re
     DateConverterPipe,
     AmountConverterPipe,
     TransactionDetailsComponent,
-    LogoPathPipe
+    LogoPathPipe,
+    AmountInputDirective,
   ],
   imports: [
     CommonModule,

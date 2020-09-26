@@ -9,6 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [],
@@ -20,8 +22,10 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatToolbarModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatAutocompleteModule,
     MatButtonToggleModule,
+    MatButtonModule,
     MatGridListModule,
     MatInputModule,
   ]

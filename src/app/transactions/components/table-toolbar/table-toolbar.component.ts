@@ -34,7 +34,7 @@ export class TableToolbarComponent implements OnInit {
       debounceTime(200),
       // apply filter on transaction entities
       tap(searchValue => {
-        const beneficiaryIds = this.filterFn(searchValue, beneficiaries)
+        const beneficiaryIds = this.beneficiaryService.filterFn(searchValue, beneficiaries)
           .map(beneficiary => beneficiary.id);
           
         this.transactionService.setFilter({
@@ -42,7 +42,7 @@ export class TableToolbarComponent implements OnInit {
         })
       }),
       // filter beneficiaries for autocomplete 
-      map(searchValue => this.filterFn(searchValue, beneficiaries)
+      map(searchValue => this.beneficiaryService.filterFn(searchValue, beneficiaries)
         .map(beneficiary => beneficiary.contractorName)
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
@@ -50,12 +50,6 @@ export class TableToolbarComponent implements OnInit {
     )),
 
   )
-
-  private filterFn = (searchValue: string, beneficiaries: Beneficiary[]): Beneficiary[] => {
-    const filterValue = searchValue.toLowerCase();
-
-    return beneficiaries.filter(b => b.contractorName.toLowerCase().includes(filterValue));
-  }
 
   public get searchField() { return this.formService.searchField; } 
 

@@ -1,1 +1,31 @@
 <app-tile-header icon="sync" title="Make a Transfer"></app-tile-header>
+
+<form [formGroup]="transferGroup" (ngSubmit)="onSubmit(amountInput.value, toAccountInput.value, formDirective)" #formDirective="ngForm">
+
+    <mat-form-field appearance="fill">
+    <mat-label>From Account</mat-label>
+    <mat-select formControlName="fromAccount">
+        <mat-option *ngFor="let account of fromAccounts$ | async" value="account"> {{ account }} </mat-option>
+    </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>To Account</mat-label>
+        <input matInput formControlName="toAccount" [matAutocomplete]="auto" #toAccountInput="matInput" >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Amount</mat-label>
+        <input appAmountInput matInput #amountInput="matInput" type="text" placeholder="0.00" formControlName="amount">
+        <span *ngIf="amountInput.focused || !!amountInput.value" matPrefix>$&nbsp;</span>
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" [disabled]="!transferGroup.valid || !amountInput.value">Submit</button>
+
+</form>
+
+<mat-autocomplete #auto="matAutocomplete">
+    <mat-option *ngFor="let option of autocompleteOptions$ | async" [value]="option">
+      {{option}}
+    </mat-option>
+</mat-autocomplete>
