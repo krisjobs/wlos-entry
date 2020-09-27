@@ -1,5 +1,17 @@
-<mat-icon> {{icon}} </mat-icon>
+<mat-icon class="header-icon"> {{icon}} </mat-icon>
 
-<span> {{title}} </span>
+<span>
+    {{ title }}
 
-<div></div>
+    <mat-chip-list *ngIf="!!tooltip">
+        <mat-chip [matTooltip]="tooltip" matTooltipPosition="above" matTooltipClass="custom-tooltip"
+            matTooltipHideDelay="1000" [cdkCopyToClipboard]="tooltip" (cdkCopyToClipboardCopied)="test()">
+            <mat-icon class="" chip-icon *ngIf="!!transactionIdCopied">content_copy</mat-icon>
+            {{ transactionIdCopied || trimmedTooltip }}
+        </mat-chip>
+    </mat-chip-list>
+</span>
+
+<div>
+    <ng-content select="a"></ng-content>
+</div>

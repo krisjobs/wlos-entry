@@ -21,6 +21,12 @@ import { DateConverterPipe } from './pipes/date-converter.pipe';
 import { AmountConverterPipe } from './pipes/amount-converter.pipe';
 import { TransactionDetailsComponent } from './components/transaction-details/transaction-details.component';
 import { LogoPathPipe } from './pipes/logo-path.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormService } from './services/form.service';
+import { EffectsModule, USER_PROVIDED_EFFECTS } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { transactionFeatureKey, transactionReducer } from 'src/app/core/store/reducers';
+import { AmountInputDirective } from './directives/amount-input.directive';
 
 
 @NgModule({
@@ -34,12 +40,16 @@ import { LogoPathPipe } from './pipes/logo-path.pipe';
     DateConverterPipe,
     AmountConverterPipe,
     TransactionDetailsComponent,
-    LogoPathPipe
+    LogoPathPipe,
+    AmountInputDirective,
   ],
   imports: [
     CommonModule,
     MaterialTransactionsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(transactionsRoutes),
+    StoreModule.forFeature(transactionFeatureKey, transactionReducer),
+    EffectsModule.forFeature([]),
   ],
   providers: [
     BeneficiaryEntityService,
@@ -48,19 +58,23 @@ import { LogoPathPipe } from './pipes/logo-path.pipe';
     TransactionDataService,
     TransactionResolver,
     BeneficiaryResolver,
+    FormService
+  ],
+  exports: [
+    RouterModule,
   ]
 })
 export class TransactionsModule {
 
   constructor(
-    private entityDefinitionService: EntityDefinitionService,
-    private entityDataService: EntityDataService,
-    private transactionDataService: TransactionDataService,
-    private beneficiaryDataService: BeneficiaryDataService,
+    entityDefinitionService: EntityDefinitionService,
+    entityDataService: EntityDataService,
+    transactionDataService: TransactionDataService,
+    beneficiaryDataService: BeneficiaryDataService,
   ) {
     entityDefinitionService.registerMetadataMap(entityMetadata);
-    entityDataService.registerService('Transaction', transactionDataService)
-    entityDataService.registerService('Beneficiary', beneficiaryDataService)
+    entityDataService.registerService('Transaction', transactionDataService);
+    entityDataService.registerService('Beneficiary', beneficiaryDataService);
   }
 
 }

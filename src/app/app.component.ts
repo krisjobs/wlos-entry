@@ -38,6 +38,8 @@ export class AppComponent implements OnInit {
     this.isLoggedOut$ = this.store.pipe(
       select(isLoggedOut)
     );
+
+    document.body.classList.add('bg-img');
   }
 
   logout() {

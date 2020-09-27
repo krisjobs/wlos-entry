@@ -1,1 +1,30 @@
-<app-tile-header icon="" [title]="title" app-tile-header>
+<app-tile-header icon="dehaze" [title]="title" [tooltip]="tooltip$ | async" app-tile-header>
+    <a mat-mini-fab color="secondary" routerLink="../">
+        <mat-icon>done</mat-icon>
+    </a>
+</app-tile-header>
+
+<mat-grid-list cols="2" rowHeight="3:1">
+    <mat-grid-tile [ngClass]="isEven ? 'test' : ''"
+        *ngFor="let item of details$ | async; let isEven = even; let isLast = last">
+        <span *ngIf="!isLast; else stateChip">
+            {{item}}
+        </span>
+        <ng-template #stateChip>
+            <mat-chip-list>
+                <mat-chip disabled [ngStyle]="{'background-color': colorButton(item)}">
+                    {{item}}
+                </mat-chip>
+            </mat-chip-list>
+        </ng-template>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<mat-form-field appearance="fill">
+    <mat-label>Change transaction state...</mat-label>
+    <mat-select (valueChange)="stateChanged($event)" [formControl]='transactionState'>
+        <mat-option *ngFor="let state of transactionStates" [value]="state">
+            {{ TransactionState[state] }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

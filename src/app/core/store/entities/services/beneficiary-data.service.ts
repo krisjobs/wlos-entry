@@ -15,6 +15,7 @@ export class BeneficiaryDataService extends DefaultDataService<Beneficiary>{
 
     getAll(): Observable<Beneficiary[]> {
         // return this.http.get('/api/beneficiaries/').pipe(map(payload => ...))
+        
         return from([BENEFICIARIES]).pipe(
             // delay(2000), // artificial delay
         )

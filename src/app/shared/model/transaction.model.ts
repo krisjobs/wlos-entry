@@ -10,9 +10,19 @@ export interface Transaction {
 }
 
 export interface ExtendedTransaction {
+    id: string;    // needed for router
     timestamp: number;
     type: string;    // TransactionType -> string
     contractorName: string;    // from beneficiary
     logoPath: string;    // from beneficiary
-    amount: number; 
+    amount: number;
+    state: TransactionState;
+}
+
+export interface TransactionDetails {
+    id: string;    // needed for state update
+    amount: number;
+    timestamp: number;
+    contractorName: string;    // from beneficiary
+    state: TransactionState;
 }

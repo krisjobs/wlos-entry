@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AmountConverterPipe implements PipeTransform {
 
   transform(amount: number): string {
-    return `-$${amount.toLocaleString()}`;
+    return `-$${amount.toFixed(2)}`;
   }
 
 }
