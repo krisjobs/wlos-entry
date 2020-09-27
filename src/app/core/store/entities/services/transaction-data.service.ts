@@ -16,7 +16,7 @@ export class TransactionDataService extends DefaultDataService<Transaction>{
     getAll(): Observable<Transaction[]> {
         // return this.http.get('/api/transactions/').pipe(map(payload => ...))
         return from([TRANSACTIONS]).pipe(
-            // delay(2000), // artificial delay
+            delay(500), // artificial delay
         )
     }
 }
