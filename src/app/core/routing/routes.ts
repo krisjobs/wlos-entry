@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from '../page-not-found/page-not-found.componen
 
 export const authRoutes: Routes = [
     {
-        path: 'login',
+        path: '',
         component: LoginComponent,
     }
 ];

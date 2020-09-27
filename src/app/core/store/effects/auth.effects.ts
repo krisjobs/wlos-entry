@@ -37,7 +37,7 @@ export class AuthEffects {
             tap(action => {
                 localStorage.removeItem('user');
                 localStorage.removeItem('balance');
-                this.router.navigateByUrl('/login')
+                this.router.navigateByUrl('/')
             })
         ),
         { dispatch: false }
