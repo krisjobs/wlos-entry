@@ -9,13 +9,15 @@ import { Transaction } from 'src/app/shared/model';
 @Injectable()
 export class FormService {
 
-  public searchField = this.fb.control(''); 
+  public searchField = this.fb.control('');
 
   public transferGroup = this.fb.group({
     fromAccount: ['', [Validators.required]],
     toAccount: ['', [Validators.required]],
     amount: ['', [Validators.required]],
   });
+
+  public transactionState = this.fb.control('');
 
   constructor(
     private fb: FormBuilder

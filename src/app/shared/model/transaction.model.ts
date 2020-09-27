@@ -18,3 +18,11 @@ export interface ExtendedTransaction {
     amount: number;
     state: TransactionState;
 }
+
+export interface TransactionDetails {
+    id: string;    // needed for state update
+    amount: number;
+    timestamp: number;
+    contractorName: string;    // from beneficiary
+    state: TransactionState;
+}

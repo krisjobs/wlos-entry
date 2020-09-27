@@ -18,7 +18,6 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
     CoreModule,
     SharedModule,
   ],

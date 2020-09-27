@@ -20,20 +20,7 @@ export class TransactionTableComponent implements OnInit {
 
   @ViewChild(MatTable, { static: false }) table: MatTable<ExtendedTransaction>;
 
-  public transactions$ = this.transactionsService.filteredEntities$.pipe(
-    switchMap(transactions => this.beneficiaryService.entityMap$.pipe(
-      map(beneficiaries => transactions
-        .map((transaction): ExtendedTransaction => ({
-          id: transaction.id,
-          timestamp: transaction.timestamp,
-          type: TransactionType[transaction.type],
-          contractorName: beneficiaries[transaction.beneficiaryId].contractorName,
-          logoPath: beneficiaries[transaction.beneficiaryId].logoPath,
-          amount: transaction.amount,
-          state: transaction.state,
-        }))
-      )
-    )),
+  public transactions$ = this.transactionsService.extendedFilteredTransactions$.pipe(
     switchMap(transactions => this.store.pipe(
       select(selectSortCriteria),
       map(({ sortType, sortDescending }) => {

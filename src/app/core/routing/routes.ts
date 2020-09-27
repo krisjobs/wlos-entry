@@ -39,10 +39,6 @@ export const appRoutes: Routes = [
 
 
 export const transactionsRoutes: Routes = [
-    // {
-    //     path: '',
-    //     component: HomeComponent
-    // },
     {
         path: '',
         component: HomeComponent,

@@ -1,0 +1,35 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+a {
+    opacity: 80%;
+}
+
+a:hover {
+    opacity: 100%;
+}
+
+.test {
+    font-weight: bolder;
+}
+
+mat-grid-list {
+    margin-top: 24px;
+    margin-right: 24px;
+}
+
+mat-chip {
+    opacity: 70% !important;
+}
+
+mat-form-field {
+    margin-bottom: 10%;
+    width: 42%;
+    align-self: center;
+}
