@@ -59,6 +59,9 @@ import { AmountInputDirective } from './directives/amount-input.directive';
     TransactionResolver,
     BeneficiaryResolver,
     FormService
+  ],
+  exports: [
+    RouterModule,
   ]
 })
 export class TransactionsModule {

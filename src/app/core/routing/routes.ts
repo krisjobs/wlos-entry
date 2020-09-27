@@ -7,6 +7,7 @@ import { BeneficiaryResolver } from 'src/app/transactions/services/beneficiary.r
 import { TransactionResolver } from 'src/app/transactions/services/transaction.resolver';
 import { AuthGuard } from '../auth/auth.guard';
 import { LoginComponent } from '../auth/login/login.component';
+import { PageNotFoundComponent } from '../page-not-found/page-not-found.component';
 
 export const authRoutes: Routes = [
     {
@@ -18,22 +19,33 @@ export const authRoutes: Routes = [
 
 export const appRoutes: Routes = [
     {
-        path: 'transactions',
-        loadChildren: () => import('src/app/transactions/transactions.module').then(m => m.TransactionsModule),
-        canActivate: [AuthGuard]
-    },
-    {
         path: '',
-        redirectTo: 'transactions',
+        redirectTo: '/transactions',
         pathMatch: 'full'
     },
+    {
+        path: 'transactions',
+        loadChildren: () => import('src/app/transactions/transactions.module').then(m => m.TransactionsModule),
+        canActivate: [AuthGuard],
+        data: {
+            preload: false
+        }
+    },
+    {
+        path: '**',
+        component: PageNotFoundComponent
+    }
 ];
 
+
 export const transactionsRoutes: Routes = [
+    // {
+    //     path: '',
+    //     component: HomeComponent
+    // },
     {
         path: '',
         component: HomeComponent,
-        pathMatch: 'full',
         resolve: {
             transactions: TransactionResolver,
             beneficiaries: BeneficiaryResolver,
@@ -41,16 +53,11 @@ export const transactionsRoutes: Routes = [
         children: [
             {
                 path: '',
-                // path: ':transactionId',
                 component: TransactionTableComponent,
-                outlet: 'transactions',
-                pathMatch: 'full'
             },
             {
                 path: ':transactionId',
                 component: TransactionDetailsComponent,
-                outlet: 'transactions',
-                // pathMatch: 'full',
             },
 
         ],
